@@ -17,18 +17,18 @@ const ObtenerAprendices = async () => {
       // Convierte la respuesta HTTP a formato JSON
       const reposData = await reposResponse.json();
       // Inicializa la variable para almacenar la URL del avatar
-      let avatarUrl = '';
-      // Itera sobre cada repositorio para encontrar el que tiene el nombre 'asincronia'
-      reposData.forEach(repo => {
-        if (repo.name === "asincronia") {
-          // Asigna la URL del avatar del propietario del repositorio a la variable
-          avatarUrl = repo.owner.avatar_url;
-        }
-      });
+      // let avatarUrl = '';
+      // // Itera sobre cada repositorio para encontrar el que tiene el nombre 'asincronia'
+      // reposData.forEach(repo => {
+      //   if (repo.name === "asincronia") {
+      //     // Asigna la URL del avatar del propietario del repositorio a la variable
+      //     avatarUrl = repo.owner.avatar_url;
+      //   }
+      // });
       // Agrega los datos relevantes al arreglo de resultados
       resultados.push({
         nombre: aprendiz.name, // Nombre del aprendiz
-        avatar: avatarUrl, // URL del avatar de GitHub
+        avatar: aprendiz.user, // URL del avatar de GitHub
         repositorios: reposData // Lista de repositorios del usuario
       });
     }

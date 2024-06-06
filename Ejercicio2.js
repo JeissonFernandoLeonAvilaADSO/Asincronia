@@ -16,16 +16,11 @@ const ObtenerUsuarios = new Promise(async (rs, rj) => { // Inicializamos una nue
       // Hacemos una solicitud para obtener los repositorios del usuario en GitHub
       const reposResponse = await fetch(`https://api.github.com/users/${aprendiz.user}/repos`);
       const reposData = await reposResponse.json(); // Convertimos la respuesta a un objeto JSON para obtener los repositorios
-      let avatarUrl;
-      reposResponse.forEach(element => {
-        if (element.name === "asincronia") {
-          avatarUrl = element.owner.avatar_url
-        }
-      });
+
       // Agregamos los datos procesados al arreglo de resultados
       resultados.push({
         nombre: aprendiz.name, // Nombre del aprendiz
-        avatar: avatarUrl, // URL de la imagen del avatar de GitHub
+        avatar: aprendiz.user, // URL de la imagen del avatar de GitHub
         repositorios: reposData // Lista de repositorios del usuario
       });
     }
@@ -40,7 +35,6 @@ const ObtenerUsuarios = new Promise(async (rs, rj) => { // Inicializamos una nue
 // Usamos la promesa y mostramos los datos en la consola
 ObtenerUsuarios.then((usuarios) => console.table(usuarios.map(({ nombre, avatar }) => ({ nombre, avatar }))))
 // Resolvemos la promesa, le pasamos una función anónima e imprimimos el mapa que devuelve la promesa en una tabla
-
 
 
 

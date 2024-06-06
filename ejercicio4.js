@@ -16,16 +16,16 @@ const ObtenerAprendices = async () => {
       const reposResponse = await fetch(`https://api.github.com/users/${aprendiz.user}/repos`);
       // Se convierte la respuesta en formato JSON
       const reposData = await reposResponse.json();
-      let avatarUrl;
-      reposResponse.forEach(element => {
-        if (element.name === "asincronia") {
-          avatarUrl = element.owner.avatar_url
-        }
-      });
+      // let avatarUrl;
+      // reposResponse.forEach(element => {
+      //   if (element.name === "asincronia") {
+      //     avatarUrl = element.owner.avatar_url
+      //   }
+      // });
       // Se agregan los datos relevantes (nombre, avatar, repositorios) al arreglo de resultados
       resultados.push({
         nombre: aprendiz.name,
-        avatar: avatarUrl,
+        avatar: aprendiz.user,
         repositorios: reposData
       });
     }

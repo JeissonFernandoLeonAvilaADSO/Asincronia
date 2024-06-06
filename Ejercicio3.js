@@ -14,16 +14,10 @@
     // usamos un for of para recorrer el arreglo de usuarios filtrados "aprendices" pasandole una constante que tome el valor de cada dato del arreglo segun la iteracion
     for (const aprendiz of aprendices) {
       const reposResponse = await fetch(`https://api.github.com/users/${aprendiz.user}/repos`) //declaramos una constante que espere la respuesta de la api de github y con un template string le pasamos el nombre del usuario del cual necesitamos los repositorios
-      let avatarUrl;
-      reposResponse.forEach(element => {
-        if (element.name === "asincronia") {
-          avatarUrl = element.owner.avatar_url
-        }
-      });
       const reposData = await reposResponse.json() //declaramos una constante que espere el cuerpo de la solicitud y lo convierta con el metodo .json() para poder manejar esos datos
       resultados.push({ //agregamos el nombre y el avatar del aprendiz de la lista "aprendices" a la lista de resultados junto con los repositorios resultantes de la solicitud anterior a la api de github
         nombre: aprendiz.name,
-        avatar: avatarUrl,
+        avatar: aprendiz.user,
         repositorios: reposData
       });
     }
